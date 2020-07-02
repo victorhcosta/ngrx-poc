@@ -8,20 +8,18 @@ module.exports = {
 			tsConfig: 'tsconfig.json',
 			allowSyntheticDefaultImports: true,
 			astTransformers: [
-				require.resolve('jest-preset-angular/InlineHtmlStripStylesTransformer.js'),
-				// require.resolve('jest-preset-angular/build/InlineFilesTransformer.js'),
-				// require.resolve('jest-preset-angular/build/StripStylesTransformer.js')
+				'jest-preset-angular/build/InlineFilesTransformer.js',
+				'jest-preset-angular/build/StripStylesTransformer.js'
 			]
 		},
 	},
-	roots: ['src', 'projects'],
+	roots: ['src'],
 	moduleFileExtensions: ['ts', 'html', 'js', 'json'],
 	setupFilesAfterEnv: [
 		'<rootDir>/setupJest.ts'
 	],
-	testMatch: [
-		'**/**/*.spec.ts',
-	],
+	testMatch: ['**/**/*.spec.ts'],
+	testPathIgnorePatterns: ['/node_modules/'],
 	transformIgnorePatterns: [
 		"node_modules/(?!@ngrx|ngx-auto-unsubscribe|lodash)"
 	],
@@ -29,4 +27,10 @@ module.exports = {
 		"^.+\\.(ts|js|html)$": "ts-jest",
 		"^.+\\.js$": "babel-jest"
 	},
+	snapshotSerializers: [
+		'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
+		'jest-preset-angular/build/AngularSnapshotSerializer.js',
+		'jest-preset-angular/build/HTMLCommentSerializer.js'
+	],
+	coverageReporters: ['html'],
 };
