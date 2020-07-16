@@ -3,11 +3,8 @@ import { Observable } from 'rxjs';
 
 import { Store, select } from '@ngrx/store';
 
-import { Increment, Decrement, Reset } from './store/actions/counter.action';
-import {
-	selectorCounter, selectorCounterFeature, selectorCounterAsString,
-} from './store/selectors/counter.selectors';
-import { IState } from 'src/app/models/state';
+import { selectorCounter } from 'src/app/store/selectors/counter.selectors';
+import { counterAction } from 'src/app/store/actions/counter.action';
 
 @Component({
 	selector: 'app-counter',
@@ -17,8 +14,9 @@ import { IState } from 'src/app/models/state';
 export class CounterComponent implements OnInit {
 	number: string;
 	count$: Observable<number>;
+	userName: string;
 
-	constructor(private _store: Store) {}
+	constructor(private readonly _store: Store) {}
 
 	ngOnInit() {
 		this.count$ = this._store.pipe(select(selectorCounter));
@@ -26,17 +24,17 @@ export class CounterComponent implements OnInit {
 
 	increment() {
 		const number = parseFloat(this.number);
-		if (number) this._store.dispatch(Increment(number));
+		if (number) this._store.dispatch(counterAction.increment({ payload: number }));
 		this.number = '';
 	}
 
 	decrement() {
 		const number = parseFloat(this.number);
-		if (number) this._store.dispatch(Decrement(number));
+		if (number) this._store.dispatch(counterAction.decrement({ payload: number }));
 		this.number = '';
 	}
 
 	reset() {
-		this._store.dispatch(Reset());
+		this._store.dispatch(counterAction.reset());
 	}
 }

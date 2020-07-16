@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { StoreModule, Store } from '@ngrx/store';
 
 import { CounterComponent } from './counter.component';
-import { countReducer } from './store/reducers/counter.reducer';
+import { countReducer } from 'src/app/store/reducers/counter.reducer';
 
 describe('CounterComponent', () => {
 	let component: CounterComponent;
@@ -16,7 +17,8 @@ describe('CounterComponent', () => {
 			declarations: [CounterComponent],
 			imports: [
 				FormsModule,
-				StoreModule.forRoot({ count: countReducer })
+				RouterTestingModule,
+				StoreModule.forRoot({ count: countReducer }),
 			],
 		}).compileComponents();
 	}));

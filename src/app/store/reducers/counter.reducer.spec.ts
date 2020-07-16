@@ -3,7 +3,7 @@ import { async, TestBed, fakeAsync } from '@angular/core/testing';
 import { StoreModule, Store } from '@ngrx/store';
 
 import { countInitialState, countReducer } from './counter.reducer';
-import { Increment, Decrement, Reset } from '../actions/counter.action';
+import { counterAction } from '../actions/counter.action';
 import { IState } from 'src/app/models/state';
 
 describe('Counter reducer', () => {
@@ -11,9 +11,7 @@ describe('Counter reducer', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			imports: [
-				StoreModule.forRoot({ count: countReducer }),
-			]
+			imports: [StoreModule.forRoot({ count: countReducer })],
 		}).compileComponents();
 	}));
 
@@ -27,31 +25,29 @@ describe('Counter reducer', () => {
 
 	describe('Unit', () => {
 		it('deve incrementar', () => {
-			store.dispatch(Increment(15));
+			store.dispatch(counterAction.increment({ payload: 15 }));
 			store.subscribe((store: IState) => {
 				expect(store.count).toBe(15);
 			});
 		});
 
 		it('deve decrementar', () => {
-			store.dispatch(Decrement(20));
+			store.dispatch(counterAction.decrement({ payload: 20 }));
 			store.subscribe((store: IState) => {
 				expect(store.count).toBe(-20);
 			});
 		});
 
 		it('deve reiniciar a store para o estado inicial', () => {
-			store.dispatch(Increment(2));
+			store.dispatch(counterAction.increment({ payload: 2 }));
 			store.subscribe((store: IState) => {
 				expect(store.count).toBe(2);
 			});
 
-			store.dispatch(Reset());
+			store.dispatch(counterAction.reset());
 			store.subscribe((store: IState) => {
 				expect(store.count).toBe(countInitialState);
 			});
 		});
-
 	});
-
 });

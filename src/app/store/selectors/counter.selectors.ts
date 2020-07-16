@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { IState } from '../../../../models/state';
+import { IState } from '../../models/state';
 
 const selectCounter = (state: IState) => state.count;
 
