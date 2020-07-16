@@ -1,3 +1,10 @@
+// /* eslint-disable import/order */
+// /* eslint-disable @typescript-eslint/no-var-requires */
+// const tsconfig = require("./tsconfig.json");
+// console.info('tsconfig', tsconfig.compileOnSave);
+// const moduleNameMapper = require("tsconfig-paths")(tsconfig);
+// console.info('moduleNameMapper', moduleNameMapper);
+
 module.exports = {
 	preset: 'jest-preset-angular',
 	testEnvironment: 'jest-environment-jsdom-thirteen',
@@ -33,4 +40,7 @@ module.exports = {
 		'jest-preset-angular/build/HTMLCommentSerializer.js'
 	],
 	coverageReporters: ['html'],
+	moduleNameMapper: {
+		"^store/(.+)$": "<rootDir>/src/app/store/$1"
+	},
 };
