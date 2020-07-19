@@ -9,8 +9,11 @@ const routes: Routes = [
 	},
 	{
 		path: 'contador',
-		loadChildren: () =>
-			import('./pages/counter/counter.module').then(m => m.CounterModule),
+		loadChildren: () => import('./pages/counter/counter.module').then(m => m.CounterModule),
+	},
+	{
+		path: 'github',
+		loadChildren: () => import('./pages/github/github.module').then(m => m.GithubModule)
 	},
 ];
 

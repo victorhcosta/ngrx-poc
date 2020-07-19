@@ -1,3 +1,6 @@
+import { IGitHub } from './github';
+
 export interface IState {
-	count: number
+	count?: number;
+	gitHub?: IGitHub;
 }

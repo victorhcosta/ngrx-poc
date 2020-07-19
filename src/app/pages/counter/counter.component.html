@@ -1,8 +1,14 @@
-<div class='container-fluid  animate__animated animate__backInUp mt-3'>
+<div class='container-fluid animate__animated animate__backInUp mt-3'>
 
 	<div class='row'>
 		<div class='col-sm-12 text-center'>
 			<h1 class='text-white'> Contador </h1>
+		</div>
+		<div class='col-sm-12 text-center text-white'>
+			<button class="btn btn-info btn-group-lg" [routerLink]='["/github"]'
+				[attr.title]='"Quantidade atual de repositorios: " + totalRepos + " e organizações " + totalOrgs'>
+				GitHub
+			</button>
 		</div>
 	</div>
 

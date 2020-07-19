@@ -1,0 +1,132 @@
+<div class='container-fluid animate__animated animate__backInUp'>
+
+	<div class='row my-3'>
+		<div class='col-sm-12 text-center'>
+			<h1 class='text-white'> GitHub </h1>
+		</div>
+		<div class='col-sm-12 text-center text-white'>
+			<button class="btn btn-info btn-group-lg" [routerLink]='["/contador"]'
+				[attr.title]='"Total atual: " + count'>
+				Contador
+			</button>
+		</div>
+	</div>
+
+	<div class="row d-flex justify-content-center">
+		<div class="col-sm-3">
+			<div class="form-group" [formGroup]='repoForm'>
+				<label class="text-white"> Nome do usuário: </label>
+				<input class="form-control" formControlName='userOwner' />
+			</div>
+		</div>
+	</div>
+
+	<mat-tab-group mat-align-tabs='center'>
+		<mat-tab [label]='"Repositorios"'>
+			<div class="row my-3">
+				<div class="col-sm-12 mb-3 d-flex justify-content-center">
+					<button class="btn btn-primary btn-lg" [disabled]='!repoForm?.get("userOwner").valid'
+						(click)='searchReposByUser()'> Buscar repositorios </button>
+				</div>
+
+				<div class="col-sm-12 table-responsive animate__animated animate__fadeIn" *ngIf="repos?.length">
+					<table class="table table-hover table-bordered table-striped table-dark">
+						<thead>
+							<tr>
+								<th>
+									Linguagem
+								</th>
+								<th>
+									Nome
+								</th>
+								<th>
+									Issues abertas
+								</th>
+								<th>
+									Licença
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let repo of repos">
+								<td>
+									{{ repo?.language }}
+								</td>
+								<td>
+									{{ repo?.name }}
+								</td>
+								<td>
+									{{ repo?.open_issues }}
+								</td>
+								<td>
+									{{ repo?.license?.name }}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="col-sm-12 table-responsive animate__animated animate__fadeIn"
+					*ngIf="!repos?.length">
+					<p class="bg-primary text-white text-center p-4">
+						<strong>
+							Digite o nome do usuário para buscar seus repositorios
+						</strong>
+					</p>
+				</div>
+			</div>
+		</mat-tab>
+
+		<mat-tab [label]='"Organizações"'>
+			<div class="row my-3">
+				<div class="col-sm-12 mb-3 d-flex justify-content-center">
+					<button class="btn btn-primary btn-lg" [disabled]='!repoForm?.get("userOwner").valid'
+						(click)='searchOrgsByUser()'> Buscar organizações </button>
+				</div>
+
+				<div class="col-sm-12 table-responsive animate__animated animate__fadeIn" *ngIf="orgs?.length">
+					<table class="table table-hover table-bordered table-striped table-dark">
+						<thead>
+							<tr>
+								<th>
+									Nome
+								</th>
+								<th>
+									Descrição
+								</th>
+								<th>
+									Avatar
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let org of orgs">
+								<td>
+									{{ org?.login }}
+								</td>
+								<td>
+									{{ org?.description }}
+								</td>
+								<td>
+									<picture>
+										<img class='img-fluid img-thumbnail-org rounded mx-auto d-block'
+											[src]='org.avatar_url' [alt]='"Avatar da organização " + org.login'>
+									</picture>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="col-sm-12 table-responsive animate__animated animate__fadeIn" *ngIf="!orgs?.length">
+					<p class="bg-primary text-white text-center p-4">
+						<strong>
+							Digite o nome do usuário para buscar suas organizações
+						</strong>
+					</p>
+				</div>
+			</div>
+		</mat-tab>
+	</mat-tab-group>
+
+</div>
