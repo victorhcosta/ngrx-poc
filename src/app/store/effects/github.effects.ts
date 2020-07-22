@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { mergeMap, map, catchError, take, mapTo } from 'rxjs/operators';
+import { mergeMap, map, catchError, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';

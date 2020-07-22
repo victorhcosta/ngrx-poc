@@ -10,7 +10,7 @@ import { CounterComponent } from './counter.component';
 	imports: [
 		CommonModule,
 		CounterRoutingModule,
-		FormsModule
+		FormsModule,
 	],
 })
 export class CounterModule {}

@@ -16,8 +16,8 @@ import { selectorRepos, selectorOrgs } from 'src/app/store/selectors/github.sele
 	styleUrls: ['./github.component.scss'],
 })
 export class GithubComponent implements OnInit, OnDestroy {
-	repos: IGitHubRepo[];
-	orgs: IGitHubOrg[];
+	repos: IGitHubRepo[] = [];
+	orgs: IGitHubOrg[] = [];
 	repoForm: FormGroup;
 	count: number;
 
@@ -35,7 +35,9 @@ export class GithubComponent implements OnInit, OnDestroy {
 			.subscribe(countInStore => this.count = countInStore);
 
 		this._store.pipe(select(selectorRepos), takeUntil(this._unsubscribe$))
-			.subscribe(repos => this.repos = repos);
+			.subscribe(repos => {
+				this.repos = repos;
+			});
 
 		this._store.pipe(select(selectorOrgs), takeUntil(this._unsubscribe$))
 			.subscribe(orgs => this.orgs = orgs);
@@ -61,4 +63,5 @@ export class GithubComponent implements OnInit, OnDestroy {
 			userOwner: ['', Validators.required],
 		});
 	}
+
 }
