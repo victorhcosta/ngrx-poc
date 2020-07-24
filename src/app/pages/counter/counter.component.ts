@@ -3,11 +3,12 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { Store, select } from '@ngrx/store';
+import { selectorCounter, counterAction } from 'src/app/store/ducks/counter.duck';
+import { selectorReposQuantity, selectorOrgsQuantity } from 'src/app/store/ducks/github.duck';
 
-import { selectorCounter } from 'src/app/store/selectors/counter.selectors';
-import { counterAction } from 'src/app/store/actions/counter.action';
-import { IState } from 'src/app/models/state';
-import { selectorOrgsQuantity, selectorReposQuantity } from 'src/app/store/selectors/github.selectors';
+// import { selectorCounter } from 'src/app/store/selectors/counter.selectors';
+// import { counterAction } from 'src/app/store/actions/counter.action';
+// import { selectorOrgsQuantity, selectorReposQuantity } from 'src/app/store/selectors/github.selectors';
 
 @Component({
 	selector: 'app-counter',

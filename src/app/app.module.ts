@@ -13,12 +13,15 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { countReducer } from './store/reducers/counter.reducer';
-import { GithubEffects } from './store/effects/github.effects';
-import { gitHubReducer } from './store/reducers/github.reducer';
-import { persist } from './store/meta/persist.store';
+import { GithubEffects } from 'projects/common/src/public-api';
 
-const metaReducers: MetaReducer<any>[] = [persist];
+// import { countReducer } from './store/reducers/counter.reducer';
+// import { gitHubReducer } from './store/reducers/github.reducer';
+import { persistInLocalStorage, persistInSessionStorage } from './store/meta/persist.store';
+import { countReducer } from './store/ducks/counter.duck';
+import { gitHubReducer } from './store/ducks/github.duck';
+
+const metaReducers: MetaReducer<any>[] = [persistInLocalStorage];
 
 @NgModule({
 	declarations: [AppComponent],

@@ -5,10 +5,12 @@ import { takeUntil } from 'rxjs/operators';
 
 import { Store, select } from '@ngrx/store';
 
-import { IGitHubRepo, IGitHubOrg } from '../../models/github';
-import { selectorCounter } from 'src/app/store/selectors/counter.selectors';
-import { gitHuActions } from 'src/app/store/actions/github.actions';
-import { selectorRepos, selectorOrgs } from 'src/app/store/selectors/github.selectors';
+import { IGitHubOrg, IGitHubRepo } from 'src/app/models/github';
+import { selectorCounter } from 'src/app/store/ducks/counter.duck';
+import { selectorRepos, selectorOrgs, gitHuActions } from 'src/app/store/ducks/github.duck';
+// import { selectorCounter } from 'src/app/store/selectors/counter.selectors';
+// import { gitHuActions } from 'src/app/store/actions/github.actions';
+// import { selectorRepos, selectorOrgs } from 'src/app/store/selectors/github.selectors';
 
 @Component({
 	selector: 'app-github',
